@@ -15,6 +15,10 @@ const App = () => {
       title="Enjoy on your TV"
       description="Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV and more."
       image={tvImage}/>
+      <FeatureSection
+      title="Download your shows to watch offline"
+      description="Save your favourites easily and always have something to watch."
+      image={tvImage}/>
     </div>
   )
 }
