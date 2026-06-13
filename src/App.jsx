@@ -4,6 +4,7 @@ import FeatureSection from './components/FeatureSection'
 import tvImage from "./assets/tvImage.jpg"
 
 import HeroBanner from './components/HeroBanner'
+import FAQ from './components/FAQ'
 
 const App = () => {
   return (
@@ -19,6 +20,8 @@ const App = () => {
       title="Download your shows to watch offline"
       description="Save your favourites easily and always have something to watch."
       image={tvImage}/>
+
+      <FAQ/>
     </div>
   )
 }
