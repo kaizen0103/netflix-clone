@@ -17,8 +17,8 @@ const HeroBanner = () => {
       
       <div className="relative z-10 text-white flex flex-col items-center justify-center text-center h-full px-4">
 
-        <h1 className="text-5xl md:text-7xl font-bold max-w-4xl">
-          Unlimited movies, TV shows and more
+        <h1 className="text-5xl md:text-5xl font-bold max-w-4xl ">
+          Unlimited movies, TV shows <br /> and more
         </h1>
 
         <p className="text-xl mt-6">
@@ -36,7 +36,7 @@ const HeroBanner = () => {
             className="px-4 py-3 w-80 border border-gray-400 rounded bg-black/50"
           />
 
-          <button className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded font-semibold">
+          <button className="bg-red-600 hover:bg-red-700 px-7 py-4 rounded text-xl font-semibold">
             Get Started
           </button>
         </div>
