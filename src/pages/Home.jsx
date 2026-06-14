@@ -7,6 +7,7 @@ import HeroBanner from '../components/HeroBanner'
 import FAQ from '../components/FAQ'
 import Footer from '../components/Footer'
 import Logo from '../components/Logo'
+import Browse from './Browse'
 
 
 const Home = () => {
@@ -29,6 +30,7 @@ const Home = () => {
       title="Download your shows to watch offline"
       description="Save your favourites easily and always have something to watch."
       image={tvImage}/>
+      <Browse/>
       <FAQ/>
       <Footer/>
     </div>
