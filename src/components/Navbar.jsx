@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -6,9 +6,12 @@ const Navbar = () => {
         <h1 className="text-red-600 text-4xl font-bold">
             NETFLIX
         </h1>
-        <button className="bg-red-600 text-white px-4 py-2 rounded">
+        <Link
+            to="/login"
+            className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition"
+        >
             Sign In
-        </button>
+        </Link>
     </nav>
     
   );
