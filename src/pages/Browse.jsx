@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { fetchTrendingMovies } from "../services/tmdb";
 import MovieRow from "../components/MovieRow";
+import HeroMovieBanner from "../components/HeroMovieBanner";
 
 const Browse = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedMovie,setSelectedMovie]= useState(null);
+
+
 
   useEffect(() => {
     const getMovies = async () => {
@@ -31,9 +35,11 @@ const Browse = () => {
 
   return (
     <div className="bg-black min-h-screen">
+      <HeroMovieBanner movie={selectedMovie}/>
       <MovieRow
         title="Trending Movies"
         movies={movies}
+        onMovieClick={setSelectedMovie}
       />
     </div>
   );

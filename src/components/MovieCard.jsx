@@ -1,16 +1,23 @@
-const MovieCard = ({ title, image }) => {
+const MovieCard = ({movie,onMovieClick }) => {
   return (
-    <div className="min-w-55 cursor-pointer transition-all duration-300 hover:scale-110 hover:z-10">
-      <img
-        src={image}
-        alt={title}
-        className="rounded-lg object-cover w-[220px] h-[330px]"
-      />
-
-      <h3 className="text-white mt-2">
-        {title}
-      </h3>
-    </div>
+    <div
+  onClick={() => onMovieClick(movie)}
+  className="
+    min-w-55
+    rounded
+    cursor-pointer
+    transition-all
+    duration-300
+    hover:scale-110
+    
+  "
+>
+  <img
+  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+  alt={movie.title}
+/>
+<h3>{movie.title}</h3>
+</div>
   );
 };
 export default MovieCard;
