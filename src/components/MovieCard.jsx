@@ -1,6 +1,6 @@
 const MovieCard = ({ title, image }) => {
   return (
-    <div className="min-w-[220px] cursor-pointer transition-all duration-300 hover:scale-110 hover:z-10">
+    <div className="min-w-55 cursor-pointer transition-all duration-300 hover:scale-110 hover:z-10">
       <img
         src={image}
         alt={title}
