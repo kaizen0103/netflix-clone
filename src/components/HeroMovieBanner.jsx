@@ -1,6 +1,6 @@
 import React from 'react'
-import { AlignCenter, Play } from 'lucide-react';
-const HeroMovieBanner = ({movie}) => {
+import {Play} from 'lucide-react';
+const HeroMovieBanner = ({movie,onMoreInfo}) => {
     if(!movie) return null;
 
   return (
@@ -19,8 +19,12 @@ const HeroMovieBanner = ({movie}) => {
                     <button className='bg-white text-black px-8 py-3 rounded font-semibold cursor-pointer transition-all duration-300 hover:scale-110'>
                         <Play size={20 } /> Play
                     </button>
-                    <button className='bg-gray-700/70 text-white px-8 py-3 rounded cursor-pointer transition-all duration-300 hover:scale-110'>
-                    More Info</button>
+                    <button
+                        onClick={onMoreInfo}
+                        className="bg-gray-700/70 text-white px-8 py-3 rounded"
+                    >
+                        More Info
+                    </button>
                 </div>
             </div>
         </div>
