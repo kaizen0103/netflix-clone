@@ -1,25 +1,35 @@
 import { useEffect, useState } from "react";
-import { fetchTrendingMovies } from "../services/tmdb";
+import { fetchTrendingMovies, fetchPopularMovies, fetchTopRatedMovies } from "../services/tmdb";
 import MovieRow from "../components/MovieRow";
 import HeroMovieBanner from "../components/HeroMovieBanner";
 import MovieModal from "../components/MovieModal";
+import Logo from "../components/Logo";
 
 const Browse = () => {
-  const [movies, setMovies] = useState([]);
+  
   const [loading, setLoading] = useState(true);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
+  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [topRatedMovies, setTopRatedMovies] = useState([]);
+
   useEffect(() => {
     const getMovies = async () => {
       try {
-        const data = await fetchTrendingMovies();
+        const[trending, popular, topRated] = await Promise.all([fetchPopularMovies(),
+          fetchTrendingMovies(),
+          fetchTopRatedMovies(),
+        ]);
 
-        setMovies(data);
+        setPopularMovies(popular);
+        setTrendingMovies(trending);
+        setTopRatedMovies(topRated);
 
-        // Set first movie as hero banner
-        if (data.length > 0) {
-          setSelectedMovie(data[0]);
+        
+        if (trending.length > 0) {
+          setSelectedMovie(trending[0]);
         }
       } catch (error) {
         console.log(error);
@@ -41,6 +51,9 @@ const Browse = () => {
 
   return (
     <div className="bg-black min-h-screen">
+       <div className='absolute top-4 left-4 z-50 '>
+        <Logo/>
+        </div>
       
       <HeroMovieBanner
         movie={selectedMovie}
@@ -56,7 +69,33 @@ const Browse = () => {
 
       <MovieRow
         title="Trending Movies"
-        movies={movies}
+        movies={trendingMovies}
+        onMovieClick={(movie) => {
+          setSelectedMovie(movie);
+
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        }}
+      />
+
+       <MovieRow
+        title="Popular"
+        movies={popularMovies}
+        onMovieClick={(movie) => {
+          setSelectedMovie(movie);
+
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        }}
+      />
+
+       <MovieRow
+        title="Top Rated"
+        movies={topRatedMovies}
         onMovieClick={(movie) => {
           setSelectedMovie(movie);
 

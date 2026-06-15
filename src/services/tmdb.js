@@ -9,3 +9,26 @@ export const fetchTrendingMovies = async () => {
 
   return data.results;
 };
+
+
+export const fetchPopularMovies = async () => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
+  );
+
+  const data = await response.json();
+
+  return data.results;
+};
+
+
+export const fetchTopRatedMovies = async () => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`
+  );
+
+  const data = await response.json();
+
+  return data.results;
+};
+

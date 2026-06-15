@@ -21,7 +21,7 @@ const HeroMovieBanner = ({movie,onMoreInfo}) => {
                     </button>
                     <button
                         onClick={onMoreInfo}
-                        className="bg-gray-700/70 text-white px-8 py-3 rounded"
+                        className="bg-gray-700/70 text-white px-8 py-3 rounded font-semibold cursor-pointer transition-all duration-300 hover:scale-110"
                     >
                         More Info
                     </button>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Logo from "../components/Logo";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -17,6 +18,9 @@ const Signup = () => {
 
   return (
     <div className="min-h-screen bg-linear-to-b from-red-950 via-black/90 to-black flex items-center justify-center">
+       <div className='absolute top-4 left-4 z-50 '>
+        <Logo/>
+        </div>
       <div className="bg-black/80 p-12 rounded-md w-112.5">
         <h1 className="text-white text-4xl font-bold mb-8">
           Sign Up
