@@ -9,6 +9,7 @@ const Browse = () => {
   
   const [loading, setLoading] = useState(true);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [searchTerm,setSearchTerm] = useState("");
   const [showModal, setShowModal] = useState(false);
 
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -18,13 +19,13 @@ const Browse = () => {
   useEffect(() => {
     const getMovies = async () => {
       try {
-        const[trending, popular, topRated] = await Promise.all([fetchPopularMovies(),
-          fetchTrendingMovies(),
+        const[trending, popular, topRated] = await Promise.all([fetchTrendingMovies(),
+          fetchPopularMovies(),
           fetchTopRatedMovies(),
         ]);
 
-        setPopularMovies(popular);
         setTrendingMovies(trending);
+        setPopularMovies(popular);
         setTopRatedMovies(topRated);
 
         
@@ -40,6 +41,18 @@ const Browse = () => {
 
     getMovies();
   }, []);
+
+  const filteredTrendingMovies = trendingMovies.filter((movie) =>
+  movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
+const filteredPopularMovies = popularMovies.filter((movie) =>
+  movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
+const filteredTopRatedMovies = topRatedMovies.filter((movie) =>
+  movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+);
 
   if (loading || !selectedMovie) {
     return (
@@ -60,6 +73,36 @@ const Browse = () => {
         onMoreInfo={() => setShowModal(true)}
       />
 
+      <div className="px-10 py-6">
+      <input
+         type="text"
+         placeholder="Search movies..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="
+          w-full
+          max-w-md
+          px-4
+          py-3
+          rounded-lg
+          bg-zinc-800
+          text-white
+          border
+          border-zinc-700
+          outline-none
+          focus:border-red-600
+          "
+          />
+          </div>
+          {searchTerm &&
+              filteredTrendingMovies.length === 0 &&
+              filteredPopularMovies.length === 0 &&
+              filteredTopRatedMovies.length === 0 && (
+                <p className="text-white mt-4 pl-10">
+                  No movies found.
+                </p>
+)}
+
       {showModal && (
         <MovieModal
           movie={selectedMovie}
@@ -69,7 +112,7 @@ const Browse = () => {
 
       <MovieRow
         title="Trending Movies"
-        movies={trendingMovies}
+        movies={filteredTrendingMovies}
         onMovieClick={(movie) => {
           setSelectedMovie(movie);
 
@@ -82,7 +125,7 @@ const Browse = () => {
 
        <MovieRow
         title="Popular"
-        movies={popularMovies}
+        movies={filteredPopularMovies}
         onMovieClick={(movie) => {
           setSelectedMovie(movie);
 
@@ -95,7 +138,7 @@ const Browse = () => {
 
        <MovieRow
         title="Top Rated"
-        movies={topRatedMovies}
+        movies={filteredTopRatedMovies}
         onMovieClick={(movie) => {
           setSelectedMovie(movie);
 
